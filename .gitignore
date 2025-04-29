@@ -1,9 +1,7 @@
 # Compiled class file
 *.class
-.git
 node_modules/
 dotfiles
-dist/
 # Log file
 *.log
 
