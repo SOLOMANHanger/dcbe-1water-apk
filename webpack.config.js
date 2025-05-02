@@ -10,7 +10,7 @@ export default (/** @type {any} */ _env, /** @type {{ mode: string; }} */ argv) 
     output: {
       filename: prod ? "bundle.[contenthash].js" : "bundle.js",
       path: path.resolve("dist"),
-      publicPath: "/",
+      publicPath: "auto",
       clean: true,
     },
     resolve: { extensions: [".js", ".jsx"] },
