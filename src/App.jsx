@@ -2,10 +2,10 @@ import React from "react";
 import Grεεting from "./components/Grεεting";
 
 
-export default function () {
+export default function App() {
   return (
     <>
-    <Grεεting />;
+      <Grεεting />
     </>
-  )
-};
+  );
+}
