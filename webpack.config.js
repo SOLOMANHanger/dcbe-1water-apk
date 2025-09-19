@@ -2,7 +2,7 @@ import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
-export default (/** @type {any} */ _env, /** @type {{ mode: string; }} */ argv) => {
+export default (_env, argv) => {
   const prod = argv.mode === "production";
 
   return {
@@ -10,7 +10,7 @@ export default (/** @type {any} */ _env, /** @type {{ mode: string; }} */ argv) 
     output: {
       filename: prod ? "bundle.[contenthash].js" : "bundle.js",
       path: path.resolve("dist"),
-      publicPath: "auto",
+      publicPath: "/",
       clean: true,
     },
     resolve: { extensions: [".js", ".jsx"] },
@@ -18,7 +18,7 @@ export default (/** @type {any} */ _env, /** @type {{ mode: string; }} */ argv) 
     devServer: {
       hot: true,
       historyApiFallback: true,
-      port: 5001,
+      port: 3000,
     },
     module: {
       rules: [
@@ -30,7 +30,7 @@ export default (/** @type {any} */ _env, /** @type {{ mode: string; }} */ argv) 
             loader: "babel-loader",
             options: {
               cacheDirectory: true,
-              plugins: [!prod && "react-refresh/babel"],
+              plugins: [!prod && "react-refresh/babel"].filter(Boolean),
             },
           },
         },
@@ -46,8 +46,8 @@ export default (/** @type {any} */ _env, /** @type {{ mode: string; }} */ argv) 
         },
         // Images and assets
         {
-          test: /\.(png|jpe?g|gif)$/i,
-          type: "node",
+          test: /\.(png|jpe?g|gif|svg)$/i,
+          type: "asset",
         },
       ],
     },
